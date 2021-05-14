@@ -1,0 +1,73 @@
+{# templates/base.html.twig #}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    {% block stylesheets %}{% endblock %}
+  </head>
+  <style>
+.link{
+  background-color:none;
+  color:white;
+ }  </style>
+  <body>
+    <nav  class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a style="margin-left:100px;"  class="navbar-brand" href="{{ path('home') }}">Bookstore</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div style="margin-left:90px;" class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ path('home') }}"><i class="fa fa-home"  aria-hidden="true"></i>  &nbsp;Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+	   <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fa fa-star" aria-hidden="true"></i>  &nbsp; Top 100</a>
+      </li>
+	  
+	 <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fa fa-map-pin" aria-hidden="true"></i>  &nbsp; Editor's Pick</a>
+      </li>
+	  
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fa fa-book" aria-hidden="true"></i> &nbsp;  Categories</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fa fa-phone-square" aria-hidden="true"></i> &nbsp;  Contact us</a>
+      </li>
+     
+      
+    </ul>
+	 {% if app.user %}
+	    <button type="button" class="btn btn-primary"> <b><a  class="link" href="{{ path('user_edit', {'id': app.user.id}) }}"> My Dashboard </a> </b></button>
+
+ &nbsp; &nbsp;<button  type="button"class="btn btn-danger"><a  class="link" href="{{ path('app_logout') }}"> <i class="fa fa-sign-in" aria-hidden="true"></i> </a></button>
+
+
+ {% else %}
+   <button type="button" style="width:180px;" class="btn btn-warning"> <a href="{{ path('app_login') }}"> <i class="fa fa-sign-in" aria-hidden="true"></i> <b> &nbsp; Login </b></a></button>
+
+ {% endif %}
+
+
+
+    
+  </div>
+</nav>
+    {% block body %}{% endblock %} {% block javascripts %}{% endblock %}
+  </body>
+  
+
+</html>

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Your purchasest! {% endblock %}
+
+{% block body %}
+<div class="bg-light p-3">
+<h1>Your purchases  : </h1>
+</div>
+{% if items | length >0 %}
+    <table class="table">
+        <thead> 
+            <tr>
+                <th></th>
+                <th>Book</th>
+                <th>Price €</th>
+                <th>Quantity</th>
+                <th>Total €</th>
+            </tr>
+        </thead> 
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td><img src="{{ item.book.image}}" width="50" height="60"/></td>
+                <td>{{ item.book.title}}</td>
+                <td>{{ item.book.price}}</td>
+                <td>{{ item.quantity}}</td>
+                <td>{{ item.book.price * item.quantity}} </td> 
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+            <td colspan="3" class="text-center">Total: </td>
+            <td>{{ total }} €</td>
+        </tfoot>
+    </table>
+    <button class="btn btn-success btn" style="position:absolute; left : 400px; top : 80px ">Payment done <i class="fas fa-donate"></i></button>
+{% else %}
+<p>Oups! ... your basket is empty </p>
+{% endif %}
+
+
+{% endblock %}
